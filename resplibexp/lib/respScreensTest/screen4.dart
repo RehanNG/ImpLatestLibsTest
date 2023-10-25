@@ -18,8 +18,6 @@ class _screen4State extends State<screen4> {
           columnPadding: EdgeInsets.all(30),
           layout: ResponsiveWrapper.of(context).isSmallerThan(TABLET) ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
           children: [
-
-
             ResponsiveRowColumnItem(
                 rowFlex: 1,
                 child: Container(
@@ -38,6 +36,8 @@ class _screen4State extends State<screen4> {
                 )),
 
 
+
+
             ResponsiveRowColumnItem(
                 rowFlex: 1,
                 child: Container(
@@ -53,7 +53,8 @@ class _screen4State extends State<screen4> {
                       ]).value,
                     ),
                   ),
-                )),
+                ),
+            ),
 
 
             ResponsiveRowColumnItem(
