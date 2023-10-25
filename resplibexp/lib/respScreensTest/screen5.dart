@@ -21,6 +21,7 @@ class _screen5State extends State<screen5> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
           ResponsiveRowColumn(
             // rowVerticalDirection: VerticalDirection.down,
             // columnVerticalDirection: VerticalDirection.down,
@@ -180,13 +181,229 @@ class _screen5State extends State<screen5> {
                 // columnOrder: 3,
                 rowFlex: 1,
                 child: Container(
-                  width: 300,
+                  width: 303,
                   height: 120,
                   color: Colors.amberAccent,
                 ),
             ),
           ],
-          )
+          ),
+
+
+          ResponsiveRowColumn(
+            rowPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            columnPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            layout: ResponsiveRowColumnType.ROW ,
+            rowMainAxisAlignment: MainAxisAlignment.center,
+            columnCrossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              ResponsiveRowColumnItem(
+                // columnOrder: 3,
+                rowFlex: 1,
+                child: Container(
+                  width: 303,
+                  height: 120,
+                  color: Colors.deepOrangeAccent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+
+                      children: [
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+
+
+                        SizedBox(
+                          width:120,
+                          height: 120,
+                          child:Card(
+                            elevation: 12,
+                            color: Colors.white,
+                          ) ,
+                        ),
+
+                      ],
+
+
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+
+        //   text with some text
+
+
+          ResponsiveRowColumn(
+            // rowVerticalDirection: VerticalDirection.down,
+            // columnVerticalDirection: VerticalDirection.down,
+            rowMainAxisAlignment: MainAxisAlignment.center,
+            columnCrossAxisAlignment: CrossAxisAlignment.center,
+            rowPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5  ),
+            columnPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5  ),
+            // layout:ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW ,
+            layout:ResponsiveRowColumnType.COLUMN  ,
+            children: [
+              //     1 row 2 colum
+              ResponsiveRowColumnItem(
+
+                  rowFlex: 1,
+                  // columnOrder: 1,
+                  // 1 row
+                  child: ResponsiveRowColumn(
+
+                    rowMainAxisAlignment: MainAxisAlignment.center,
+                    columnCrossAxisAlignment: CrossAxisAlignment.center,
+                    // rowVerticalDirection: VerticalDirection.down,
+                    // columnVerticalDirection: VerticalDirection.down,
+
+                    layout: ResponsiveRowColumnType.ROW,
+
+                    children: [
+                      //  2 column
+                      //   1st column
+                      ResponsiveRowColumnItem(
+                          rowFlex: 1,
+                          child: ResponsiveRowColumn(
+                            layout:ResponsiveRowColumnType.COLUMN,
+                            children: [
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: Container(
+                                    width: 149,
+                                    height: 150,
+                                    color: Colors.blueAccent,
+                                  )
+                              ) ,
+
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: SizedBox(
+                                    height: 5,
+                                  )
+                              ) ,
+
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: Container(
+                                    width: 149,
+                                    height: 150,
+                                    color: Colors.blueAccent,
+                                  )
+                              ) ,
+
+                            ],
+                          )
+                      ),
+
+                      ResponsiveRowColumnItem(child: SizedBox(width: 5,)),
+                      ResponsiveRowColumnItem(
+                          rowFlex: 1,
+                          child: ResponsiveRowColumn(
+                            layout:ResponsiveRowColumnType.COLUMN,
+                            children: [
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: Container(
+                                    width: 149,
+                                    height: 150,
+                                    color: Colors.blueAccent,
+                                  )
+                              ) ,
+
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: SizedBox(
+                                    height: 5,
+                                  )
+                              ) ,
+
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: Container(
+                                    width: 149,
+                                    height: 150,
+                                    color: Colors.blueAccent,
+                                  )
+                              ) ,
+
+                            ],
+                          )
+                      ),
+
+
+                      //  banner container
+
+
+
+                    ],
+                  )
+              ),
+
+            ],
+
+          ),
 
         ],
       ),
