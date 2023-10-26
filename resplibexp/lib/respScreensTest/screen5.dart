@@ -294,7 +294,6 @@ class _screen5State extends State<screen5> {
 
         //   text with some text
 
-
           ResponsiveRowColumn(
             // rowVerticalDirection: VerticalDirection.down,
             // columnVerticalDirection: VerticalDirection.down,
@@ -405,6 +404,120 @@ class _screen5State extends State<screen5> {
 
           ),
 
+        //   banner option
+          ResponsiveRowColumn(
+            rowPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            columnPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            layout: ResponsiveRowColumnType.ROW ,
+            rowMainAxisAlignment: MainAxisAlignment.center,
+            columnCrossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              ResponsiveRowColumnItem(
+                // columnOrder: 3,
+                rowFlex: 1,
+                child: Container(
+                  width: 303,
+                  height: 120,
+                  color: Colors.amberAccent,
+                ),
+              ),
+            ],
+
+          ),
+
+
+
+
+        //   column with buttons
+
+          ResponsiveRowColumn(
+            // rowVerticalDirection: VerticalDirection.down,
+            // columnVerticalDirection: VerticalDirection.down,
+            rowMainAxisAlignment: MainAxisAlignment.center,
+            columnCrossAxisAlignment: CrossAxisAlignment.center,
+            rowPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            columnPadding: EdgeInsets.only( left:30,right: 30 , bottom: 5 ),
+            // layout:ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW ,
+            layout:ResponsiveRowColumnType.COLUMN  ,
+            children: [
+              //     1 row 2 colum
+              ResponsiveRowColumnItem(
+
+                  rowFlex: 1,
+                  // columnOrder: 1,
+                  // 1 row
+                  child: ResponsiveRowColumn(
+
+                    rowMainAxisAlignment: MainAxisAlignment.center,
+                    columnCrossAxisAlignment: CrossAxisAlignment.center,
+                    // rowVerticalDirection: VerticalDirection.down,
+                    // columnVerticalDirection: VerticalDirection.down,
+
+                    layout: ResponsiveRowColumnType.ROW,
+
+                    children: [
+                      //  2 column
+                      //   1st column
+                      ResponsiveRowColumnItem(
+                          rowFlex: 1,
+                          child: ResponsiveRowColumn(
+                            layout:ResponsiveRowColumnType.COLUMN,
+                            children: [
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: Container(
+                                    width: 150,
+                                    height: 150,
+                                    color: Colors.blueAccent,
+                                  )
+                              ) ,
+
+                              ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: SizedBox(
+                                    width: 5,
+                                  )
+                              ) ,
+
+                            ],
+                          )
+                      ),
+
+                      ResponsiveRowColumnItem(child: SizedBox(width: 5,)),
+                      ResponsiveRowColumnItem(
+                          rowFlex:1,
+                          child: ResponsiveRowColumn(
+                            layout: ResponsiveRowColumnType.COLUMN,
+                            children:[
+                              ResponsiveRowColumnItem(
+                                child: Container(
+                                  height: 150,
+                                  width: 150,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+
+
+
+                            ],
+                          )
+                      ),
+
+                      //  banner container
+
+
+
+                    ],
+                  )
+              ),
+
+            ],
+
+          ),
+
+
+          
         ],
       ),
     );

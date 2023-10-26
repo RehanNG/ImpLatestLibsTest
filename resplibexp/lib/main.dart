@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, widget) {
         return  ResponsiveWrapper.builder(ClampingScrollWrapper.builder(context, widget!) ,
-        breakpoints: [
+        defaultScale: true,
+          maxWidth: 1280,
+          minWidth: 280,
+          breakpoints: [
           ResponsiveBreakpoint.resize(350,name: MOBILE),
           ResponsiveBreakpoint.resize(280,name: MOBILE),
           ResponsiveBreakpoint.autoScale(600,name : TABLET),
