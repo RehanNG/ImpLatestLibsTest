@@ -1,49 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 const kTileHeight = 50.0;
-// class ProgressTracking extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       // appBar: TitleAppBar('Package Delivery Tracking'),
-//       body:
-//       Center(
-//         child: ListView.builder(
-//           itemCount: 1,
-//           itemBuilder: (context, index) {
-//             final data = _data(index + 1);
-//             return Center(
-//               child: Container(
-//                 width: 360.0,
-//                 child: Card(
-//                   margin: EdgeInsets.all(20.0),
-//                   child: Column(
-//                     mainAxisSize: MainAxisSize.min,
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.all(20.0),
-//                         child: _TrackingTitle(
-//                           progressInfo: data,
-//                         ),
-//                       ),
-//                       Divider(height: 1.0),
-//                       _RequestProcesses(processes: data.requestProcesses),
-//                       Divider(height: 1.0),
-//                       Padding(
-//                         padding: const EdgeInsets.all(20.0),
-//                         child: _OnTimeBar(driver: data.userInfo),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 class ProgressTracking extends StatelessWidget {
   final data = _data();
   @override
@@ -54,38 +11,41 @@ class ProgressTracking extends StatelessWidget {
 
 
       body:
-      Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  width: 360.0,
-                  child: Card(
-                    margin: EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: _TrackingTitle(
-                            progressInfo: data,
+      SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Card(
+                      margin: EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: _TrackingTitle(
+                              progressInfo: data,
+                            ),
                           ),
-                        ),
-                        Divider(height: 1.0),
-                        _RequestProcesses(processes: data.requestProcesses),
-                        Divider(height: 1.0),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: _OnTimeBar(driver: data.userInfo),
-                        ),
-                      ],
+                          Divider(height: 1.0),
+                          _RequestProcesses(processes: data.requestProcesses),
+                          Divider(height: 1.0),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: _OnTimeBar(driver: data.userInfo),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          )
+              ],
+            ),
+      )
       ,
 
 
@@ -191,59 +151,62 @@ class _RequestProcesses extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: FixedTimeline.tileBuilder(
-          theme: TimelineThemeData(
-            nodePosition: 0,
-            color: Color(0xff989898),
-            indicatorTheme: IndicatorThemeData(
-              position: 0,
-              size: 20.0,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: FixedTimeline.tileBuilder(
+            theme: TimelineThemeData(
+              nodePosition: 0,
+              color: Color(0xff989898),
+              indicatorTheme: IndicatorThemeData(
+                position: 0,
+                size: 20.0,
+              ),
+              connectorTheme: ConnectorThemeData(
+                thickness: 2.5,
+              ),
             ),
-            connectorTheme: ConnectorThemeData(
-              thickness: 2.5,
-            ),
-          ),
-          builder: TimelineTileBuilder.connected(
-            connectionDirection: ConnectionDirection.before,
-            itemCount: processes.length,
-            contentsBuilder: (_, index) {
-              if (processes[index].isCompleted) return null;
+            builder: TimelineTileBuilder.connected(
+              connectionDirection: ConnectionDirection.before,
+              itemCount: processes.length,
+              contentsBuilder: (_, index) {
+                if (processes[index].isCompleted) return null;
 
-              return Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      processes[index].Title,
-                      style: DefaultTextStyle.of(context).style.copyWith(
-                        fontSize: 18.0,
+                return Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        processes[index].Title,
+                        style: DefaultTextStyle.of(context).style.copyWith(
+                          fontSize: 18.0,
+                        ),
                       ),
-                    ),
-                    _InnerTimeline(messages: processes[index].messages),
-                  ],
-                ),
-              );
-            },
-            indicatorBuilder: (_, index) {
-              if (processes[index].isCompleted) {
-                return DotIndicator(
-                  color: Color(0xff7192f6),
-                  child: Icon(
-                    Icons.check,
-                    color: Colors.white,
-                    size: 12.0,
+                      _InnerTimeline(messages: processes[index].messages),
+                    ],
                   ),
                 );
-              } else {
-                return OutlinedDotIndicator(
-                  borderWidth: 2.5,
-                );
-              }
-            },
-            connectorBuilder: (_, index, ___) => SolidLineConnector(
-              color: processes[index].isCompleted ? Color(0xff7192f6) : null,
+              },
+              indicatorBuilder: (_, index) {
+                if (processes[index].isCompleted) {
+                  return DotIndicator(
+                    color: Color(0xff7192f6),
+                    child: Icon(
+                      Icons.check,
+                      color: Colors.white,
+                      size: 12.0,
+                    ),
+                  );
+                } else {
+                  return OutlinedDotIndicator(
+                    borderWidth: 2.5,
+                  );
+                }
+              },
+              connectorBuilder: (_, index, ___) => SolidLineConnector(
+                color: processes[index].isCompleted ? Color(0xff7192f6) : null,
+              ),
             ),
           ),
         ),
@@ -321,6 +284,25 @@ _ProgressInfo _data() => _ProgressInfo(
       messages: [
         _RequestMessage('8:30am'),
         _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+        _RequestMessage('11:30am'),
+
+
+
       ],
     ),
 
@@ -329,6 +311,19 @@ _ProgressInfo _data() => _ProgressInfo(
       'Manager: Jon',
       messages: [
         _RequestMessage('13:00pm'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
+        _RequestMessage('11:35am'),
         _RequestMessage('11:35am'),
       ],
     ),
@@ -363,6 +358,7 @@ class _UserInfo {
 }
 
 class _RequestProcess {
+
   const _RequestProcess(
       this.Title,
       {
